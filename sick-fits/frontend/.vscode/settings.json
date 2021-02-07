@@ -4,5 +4,23 @@
     "titleBar.inactiveForeground": "#000000CC",
     "titleBar.activeBackground": "#FFC600",
     "titleBar.inactiveBackground": "#FFC600CC"
+  },
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  "[javascript]": {
+    "togglequotes.chars": ["\"", "'", "`"]
+  },
+  "prettier.jsxSingleQuote": true,
+  "prettier.packageManager": "yarn",
+  "prettier.singleQuote": true,
+  "eslint.packageManager": "yarn",
+  "eslint.options": {
+    "react/self-closing-comp": [
+      "error",
+      {
+        "component": true,
+        "html": true
+      }
+    ]
   }
 }
