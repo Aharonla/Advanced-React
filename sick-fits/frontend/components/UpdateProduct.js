@@ -58,7 +58,7 @@ export default function UpdateProduct({ id }) {
       // TODO: pass in updates to product here
     },
   });
-  const { inputs, handleChange, resetForm, clearForm } = useForm(data?.Product);
+  const { inputs, handleChange } = useForm(data?.Product);
   if (loading) {
     return <p>Loading...</p>;
   }
