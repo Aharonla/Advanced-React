@@ -1,5 +1,4 @@
-import { MailResponse } from './../../../finished-application/backend/lib/mail';
-import { createTransport } from 'nodemailer';
+import { createTransport, getTestMessageUrl } from 'nodemailer';
 
 const transport = createTransport({
   host: process.env.MAIL_HOST,
@@ -24,12 +23,8 @@ function makeANiceEmail(text: string): string {
     </div>`;
 }
 
-interface MailResponse {
-  message: string;
-}
-
-async function sendPasswordResetEmail(resetToken: string, to: string) {
-  const info = (await transport.sendMail({
+export async function sendPasswordResetEmail(resetToken: string, to: string) {
+  const info = await transport.sendMail({
     to,
     from: 'test@example.com',
     subject: 'Your Password Reset Token',
@@ -37,6 +32,8 @@ async function sendPasswordResetEmail(resetToken: string, to: string) {
 
             <a href="${process.env.FRONTEND_URL}/reset?token=${resetToken}">Click here to reset</a>
         `),
-  })) as MailResponse;
-  console.log(info);
+  });
+  if (process.env.MAIL_USER.includes('ethereal.email')) {
+    console.log(`message sent! preview it at ${getTestMessageUrl(info)}`);
+  }
 }
